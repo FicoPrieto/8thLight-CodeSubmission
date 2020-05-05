@@ -7,7 +7,7 @@ import {Style as _Style} from "./Modules/Log/Style"
 //###  Aliases  ###//
 //#################//
 
-const {Preset:Style} = _Style
+const {Preset:Style, Font, Color} = _Style
 
 
 //################################//
@@ -31,10 +31,26 @@ export default{
 	},
 
 	Output: {
+		AppStart: {
+			banner: () => multiLine([
+				Color.grey       (" __  ___ _  _    _    _ ____ _  _ ___"                          ), // FIGlet.cybermedium
+				Color.grey       ("|__|  |  |__|    |    | | __ |__|  |"                           ),
+				Color.grey       ("|__|  |  |  |    |___ | |__] |  |  |"                           ),
+				Color.brightGreen("______               _ _               _     _     _"           ), // FIGlet.doom
+				Color.green      ("| ___ \\             | (_)             | |   (_)   | |"         ),
+				Color.brightCyan ("| |_/ /___  __ _  __| |_ _ __   __ _  | |    _ ___| |_"         ),
+				Color.cyan       ("|    // _ \\/ _\` |/ _\` | | '_ \\ / _\` | | |   | / __| __|"   ),
+				Color.brightBlue ("| |\\ \\  __/ (_| | (_| | | | | | (_| | | |___| \\__ \\ |_"     ),
+				Color.blue       ("\\_| \\_\\___|\\__,_|\\__,_|_|_| |_|\\__, | \\_____/_|___/\\__|"),
+				Color.blue       ("                                __/ |"                          ),
+				Color.brightBlue ("                               |___/"                           ),
+			].join("\n"), {indent:1}),
+		},
+
 		Command: {
 			Find: {
 				command:     "find <query>",
-				description: "Searches GoogleBooks for the given query, then allows you to select books to save to your reading list.",
+				description: `Searches GoogleBooks for the provided ${Font.bold.underline("query")}, then allows you to select books to save to your reading list.`,
 				query_API: {
 					inProgress: "Querying GoogleBooks API",
 					noResults:  "No books were found matching your query. Try simplifying your query.",
@@ -59,3 +75,11 @@ export default{
 	},
 
 }
+
+
+//#################//
+//###  Imports  ###//
+//#################//
+
+//###  App ###//
+import {multiLine} from "./Modules/Log/Format"

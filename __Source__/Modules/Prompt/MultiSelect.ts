@@ -119,13 +119,13 @@ function _get_ConstructorArguments<ValueType>(
 
 		// formats prompt messages
 		message(){
-			if(this.state.submitted){return Style.Normal(`${messages.on_Display}\n${messages.on_Submit(this.value)}\n`)}
-			if(this.state.cancelled){return Style.Normal(`${messages.on_Display}\n${messages.on_Cancel            }\n`)}
-			else                    {return `${Style.Bold(messages.on_Display)}:`                                      }
+			if(this.state.submitted){return `${messages.on_Submit(this.result())}\n`}
+			if(this.state.cancelled){return `${messages.on_Cancel}\n`               }
+			else                    {return `${Style.Bold(messages.on_Display)}:`   }
 		},
 
 		// returns `ChoiceMap` values
-		result: ((keys:string[]) => keys.map(key => choiceMap[key].value)),
+		result: ((keys:string[]) => (keys) ? keys.map(key => choiceMap[key].value) : []),
 
 		// removes trailing characters @ prompt message
 		separator: () => "",

@@ -1,5 +1,7 @@
 //###  App  ###//
 import {database as _database} from "./Database/__Main__"
+import Settings                from "../Settings"
+import {override_Help}         from "../Modules/CLI/Help"
 
 //###  NPM  ###//
 import Vorpal from "vorpal"
@@ -23,8 +25,17 @@ export namespace App{
 
 	/** Initializes the app & displays usage information. */
 	export function start(){
+		// initialize
+		override_Help(instance)
 		instance.delimiter(">")
+
+		// print banner
+		log(`\n${Settings.Output.AppStart.banner()}\n`)
+
+		// show help
 		instance.execSync("help")
+
+		// start interaction
 		instance.show()
 	}
 
@@ -49,3 +60,4 @@ export namespace App{
 
 import "./Commands/Find/__Main__"
 import "./Commands/List/__Main__"
+

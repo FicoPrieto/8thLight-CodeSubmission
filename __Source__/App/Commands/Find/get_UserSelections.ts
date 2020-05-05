@@ -2,6 +2,8 @@
 import {build_BookString, convert_Volume_To_Book} from "../../Utilities"
 import Settings                                   from "../../../Settings"
 import {Environment         }                     from "../../../Modules/Environment/__Main__"
+import {tab, multiLine      }                     from "../../../Modules/Log/Format"
+import {Style               }                     from "../../../Modules/Log/Style"
 import {Prompt              }                     from "../../../Modules/Prompt/__Main__"
 import {Prompt as PromptType}                     from "../../../Modules/Prompt/_Type"
 
@@ -41,10 +43,26 @@ function _get_SelectionPrompt(volumes:Volume[]){
 		messages: {
 			on_Display: `${resultsTotal_Message}\n${Message.select}`,
 			on_Cancel:  Message.noResults,
-			on_Submit:  (selections) => Message.saved(selections.length),
+			on_Submit:  (selections) => (
+				Style.Preset.Note(
+					Message.saved(selections.length) + _get_SelectedBooks_Summary(selections)
+				)
+			),
 		},
 		choiceFormatter: Prompt.MultiSelect.Formatter.Highlight_FirstLine_Only,
 	})
+}
+
+function _get_SelectedBooks_Summary(selections:Volume[]){
+	return (
+		(selections.length > 0)
+		? "\n" + multiLine(
+			selections
+				.map((selection) => `- ${selection.volumeInfo.title}`)
+				.join("\n")
+		, {indent:1, truncate:Settings.UI.maximum_LineWidth})
+		: ""
+	)
 }
 
 function _build_ChoiceMap(volumes:Volume[]){
