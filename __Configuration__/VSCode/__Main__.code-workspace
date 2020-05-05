@@ -1,0 +1,37 @@
+{
+
+	"folders": [
+		{"path":"../..",                   "name":"___  ROOT  ___________________"},
+		{"path":"../../__Configuration__", "name":"___  CONFIG  _________________"},
+		{"path":"../../__Source__",        "name":"___  SOURCE  _________________"},
+	],
+
+	"settings": {
+		"editor.tabSize":           2,
+		"editor.insertSpaces":      false,
+		"editor.detectIndentation": false,
+		"terminal.integrated.cwd":  "${workspaceFolder:___  ROOT  ___________________}",
+
+		"files.associations": {
+			"*.test": "typescript"
+		},
+
+		"files.exclude": {
+			"**/__Build__":         true,
+			"**/__Configuration__": true,
+			"**/__Generated__":     true,
+			"**/__Source__":        true,
+			"**/node_modules":      true,
+		},
+
+		"search.exclude": {
+			"**/__Build__":         true,
+			"**/__Configuration__": true,
+			"**/__Generated__":     true,
+			"**/__Source__":        true,
+			"**/node_modules":      true,
+			"**/yarn.lock":         true,
+		},
+	},
+
+}

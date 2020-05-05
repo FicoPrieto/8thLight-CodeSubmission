@@ -1,0 +1,96 @@
+name: Release
+
+
+on:
+
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+", "[0-9]+.[0-9]+.[0-9]+-[0-9]+"]
+
+  pull_request:
+    tags: ["[0-9]+.[0-9]+.[0-9]+", "[0-9]+.[0-9]+.[0-9]+-[0-9]+"]
+
+
+env:
+  TERM: xterm
+
+
+jobs:
+
+  run:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+
+      - name: "[Git] Checkout Master"
+        uses: actions/checkout@v2
+
+      - name: "[Node] Setup"
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: "[Project] Install Dependencies"
+        run:  npm run install-dependencies
+
+      - name: "[Project] Run Tests"
+        run:  npm run test
+
+      - name: "[Project] Build"
+        run:  npm run build
+
+      - name: "[Utility] Get Release Version"
+        id:   get_release_version
+        uses: frabert/replace-string-action@v1.1
+        with:
+          string:       ${{github.ref}}
+          pattern:      'refs\/tags\/(.*)'
+          replace-with: "$1"
+
+      - name: "[Utility] Get EXE Name"
+        id:   get_exe_name
+        uses: FicoPrieto-Forks/read-json-property-action@v1.1
+        with:
+          path:     ./package.json
+          property: application.executable.name
+
+      - name: "[Release] Create"
+        id:   create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name:     ${{steps.get_release_version.outputs.replaced}}
+          release_name: ${{steps.get_release_version.outputs.replaced}}
+          draft:        false
+          prerelease:   false
+
+      - name: "[Release] Upload Linux Executable"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          upload_url:         ${{steps.create_release.outputs.upload_url}}
+          asset_path:         ./__Generated__/Executables/Linux/ReadingList
+          asset_name:         ${{steps.get_exe_name.outputs.value}}--${{steps.get_release_version.outputs.replaced}}--Linux
+          asset_content_type: application/x-executable
+
+      - name: "[Release] Upload Mac Executable"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          upload_url:         ${{steps.create_release.outputs.upload_url}}
+          asset_path:         ./__Generated__/Executables/Mac/ReadingList
+          asset_name:         ${{steps.get_exe_name.outputs.value}}--${{steps.get_release_version.outputs.replaced}}--Mac
+          asset_content_type: application/x-mach-binary
+
+      - name: "[Release] Upload Windows Executable"
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          upload_url:         ${{steps.create_release.outputs.upload_url}}
+          asset_path:         ./__Generated__/Executables/Windows/ReadingList.exe
+          asset_name:         ${{steps.get_exe_name.outputs.value}}--${{steps.get_release_version.outputs.replaced}}--Windows.exe
+          asset_content_type: application/x-dosexec

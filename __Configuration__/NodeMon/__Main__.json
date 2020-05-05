@@ -1,0 +1,9 @@
+{
+
+	"verbose": false,
+
+	"events": {
+		"start": "node -e console.clear()"
+	}
+
+}

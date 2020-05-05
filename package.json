@@ -1,0 +1,76 @@
+{
+
+	"name":    "8th-light-code-submission",
+	"license": "GPL-2.0-only",
+	"private": true,
+
+	"application": {
+		"executable": {
+			"name": "ReadingList",
+			"targets": {
+				"linux":   "node12-linux-x64,node12-macos-x64,node12-win-x64",
+				"windows": "node12-win-x64"
+			}
+		}
+	},
+
+	"dependencies": {
+	},
+
+	"devDependencies": {
+		"@types/node":    "^13.13.2",
+
+		"del-cli":       "^3.0.0",
+		"make-dir-cli":  "^2.0.0",
+		"move-file-cli": "^1.0.0",
+		"nodemon":       "^2.0.3",
+		"npm-run-all":   "^4.1.5",
+		"run-script-os": "^1.1.1",
+
+		"typescript":     "^3.8.3",
+		"ts-node":        "^8.9.0",
+		"tsconfig-paths": "^3.9.0",
+
+		"jest":        "^25.4.0",
+		"ts-jest":     "^25.4.0",
+		"@types/jest": "^25.2.1",
+
+		"pkg": "^4.4.7"
+	},
+
+	"scripts": {
+		"install-dependencies": "yarn install",
+
+		"build":         "npm-run-all build:*",
+		"build:1":       "npm run _clean-generated",
+		"build:2":       "tsc",
+		"build:3":       "run-script-os",
+		"build:3:nix":   "pkg ./__Generated__/TypeScript/__Main__.js --targets $npm_package_application_executable_targets_linux --out-path ./__Generated__/Executables",
+		"build:3:win32": "pkg ./__Generated__/TypeScript/__Main__.js --targets %npm_package_application_executable_targets_windows% --out-path ./__Generated__/Executables",
+		"build:4":       "run-script-os",
+		"build:4:nix":   "npm-run-all build:4:nix:*",
+		"build:4:nix:1": "move-file ./__Generated__/Executables/__Main__-linux ./__Generated__/Executables/Linux/$npm_package_application_executable_name",
+		"build:4:nix:2": "move-file ./__Generated__/Executables/__Main__-macos ./__Generated__/Executables/Mac/$npm_package_application_executable_name",
+		"build:4:nix:3": "move-file ./__Generated__/Executables/__Main__-win.exe ./__Generated__/Executables/Windows/$npm_package_application_executable_name.exe",
+		"build:4:win32": "move-file ./__Generated__/Executables/__Main__.exe ./__Generated__/Executables/Windows/%npm_package_application_executable_name%.exe",
+
+		"debug":       "npm run _clear-console && ts-node -r tsconfig-paths/register ./__Source__/__Debug__.ts",
+		"debug-watch": "nodemon --config ./__Configuration__/NodeMon/__Main__.json --exec ts-node -r tsconfig-paths/register ./__Source__/__Debug__.ts",
+
+		"start":       "npm run _clear-console && ts-node -r tsconfig-paths/register ./__Source__/__Main__.ts",
+		"start-watch": "nodemon --config ./__Configuration__/NodeMon/__Main__.json --exec ts-node -r tsconfig-paths/register ./__Source__/__Main__.ts",
+
+		"test":          "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent",
+		"test-coverage": "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --coverage",
+		"test-watch":    "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --watch",
+
+		"_clear-console":       "run-script-os",
+		"_clear-console:nix":   "clear",
+		"_clear-console:win32": "cls",
+
+		"_clean-generated":   "npm-run-all _clean-generated:*",
+		"_clean-generated:1": "del-cli ./__Generated__/**",
+		"_clean-generated:2": "make-dir ./__Generated__"
+	}
+
+}
