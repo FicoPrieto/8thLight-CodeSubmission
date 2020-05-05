@@ -14,23 +14,24 @@ const {Preset:Style, Font, Color} = _Style
 //###  Exports.Default.Public  ###//
 //################################//
 
-export default{
+namespace Settings{
 
-	appName:           "ReadingList",
-	databaseExtension: "data",
+	export const appName           = "ReadingList"
+	export const databaseExtension = "data"
+	export const bookAPI           = "Google Books"
 
-	testEnvironment_Key: "__TEST_ENVIRONMENT__",
+	export const testEnvironment_Key = "__TEST_ENVIRONMENT__"
 
-	maximum_QueryResults: 5,
+	export const maximum_QueryResults = 5
 
-	UI: {
+	export const UI = {
 		indentationWidth:  3,
 		maximum_LineWidth: 80,
 		truncationString:  "...",
 		choiceIndicator:   "✓",
-	},
+	}
 
-	Output: {
+	export const Output = {
 		AppStart: {
 			banner: () => multiLine([
 				Color.grey       (" __  ___ _  _    _    _ ____ _  _ ___"                          ), // FIGlet.cybermedium
@@ -50,11 +51,11 @@ export default{
 		Command: {
 			Find: {
 				command:     "find <query>",
-				description: `Searches GoogleBooks for the provided ${Font.bold.underline("query")}, then allows you to select books to save to your reading list.`,
+				description: `Searches ${bookAPI} for the provided ${Font.bold.underline("query")}, then allows you to select books to save to your reading list.`,
 				query_API: {
-					inProgress: "Querying GoogleBooks API",
+					inProgress: `Querying ${bookAPI} API`,
 					noResults:  "No books were found matching your query. Try simplifying your query.",
-					fail:       "Unable to access the GoogleBooks API.",
+					fail:       `Unable to access the ${bookAPI} API.`,
 				},
 				get_UserSelection: {
 					select:    "Select the books you'd like to save to your reading list",
@@ -72,9 +73,11 @@ export default{
 				},
 			},
 		},
-	},
+	}
 
 }
+
+export default Settings
 
 
 //#################//
