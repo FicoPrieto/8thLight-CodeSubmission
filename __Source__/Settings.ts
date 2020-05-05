@@ -4,8 +4,31 @@ export default{
 
 	maximum_QueryResults: 5,
 
-	indentationWidth:  3,
-	maximum_LineWidth: 80,
-	truncationString:  "...",
+	UI: {
+		indentationWidth:  3,
+		maximum_LineWidth: 80,
+		truncationString:  "...",
+		choiceIndicator:   "✓",
+	},
+
+	Output: {
+		Command: {
+			Find: {
+				command:     "find <query>",
+				description: "Searches GoogleBooks for the given query.",
+				query_API: {
+					inProgress: "Querying GoogleBooks API",
+					noResults:  "No books were found matching your query. Try simplifying your query.",
+					fail:       "Unable to access the GoogleBooks API.",
+				},
+				get_UserSelection: {
+					select:    "Select the books you'd like to save to your reading list",
+					noResults: "0 books were saved to your reading list.",
+					found:     /* <n> books were */ "found.",
+					saved:     /* <n> books were */ "saved to your reading list.",
+				},
+			},
+		},
+	},
 
 }

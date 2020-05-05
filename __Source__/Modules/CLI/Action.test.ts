@@ -1,6 +1,6 @@
 //###  Module  ###//
 import {Action} from "./Action"
-import {Vorpal} from "./Command.test.utilities"
+import {Vorpal} from "./_TestUtilities"
 
 
 //###############//

@@ -47,4 +47,4 @@ export namespace App{
 //###  Initialize  ###//
 //####################//
 
-import "./Commands/find"
+import "./Commands/Find/__Main__"

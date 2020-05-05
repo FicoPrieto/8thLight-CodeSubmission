@@ -1,22 +1,18 @@
+//###  Module  ###//
+import {VolumeInstance_Array} from "./_TestUtilities"
+
 //###  App  ###//
-import {App} from "../App"
+import {App} from "../../App"
 
 //###  NPM  ###//
-import {Volume} from "../NPM/GoogleBooks/__Main__"
+import {Volume} from "../../NPM/GoogleBooks/__Main__"
 
 
 //#################//
 //###  Aliases  ###//
 //#################//
 
-const {instance:app} = App
-const exec           = app.exec.bind(app)
-
-const {
-	any,
-	arrayContaining,
-	objectContaining,
-} = expect
+const {run} = App
 
 
 //###############//
@@ -24,24 +20,18 @@ const {
 //###############//
 
 test("`find` retrieves `Volume`s from `GoogleBooks` API with valid query", async ()=>{
-	const {volumes} = await exec("find Programming")
-	expect(volumes).toEqual(
-		arrayContaining([
-			objectContaining({
-				id: any(String),
-			}),
-		])
-	)
+	const {foundVolumes} = await run("find Programming")
+	expect(foundVolumes).toEqual(VolumeInstance_Array)
 })
 
 test("`find` retrieves no `Volume`s from `GoogleBooks` API with invalid query", async ()=>{
-	const {volumes} = await exec(`find ${_randomString}`)
-	expect(volumes).toHaveLength(0)
+	const {foundVolumes} = await run(`find ${_randomString}`)
+	expect(foundVolumes).toHaveLength(0)
 })
 
 test("`find` retrieves `Volume`s from `GoogleBooks` API with book excerpt", async ()=>{
-	const {volumes}  = (await exec(`find ${_bookExcerpt}`)) as {volumes:Volume[]}
-	const firstTitle = volumes[0].volumeInfo.title.toLowerCase()
+	const {foundVolumes}  = (await run(`find ${_bookExcerpt}`)) as {foundVolumes:Volume[]}
+	const firstTitle = foundVolumes[0].volumeInfo.title.toLowerCase()
 	expect(
 		["pragmatic", "thinking", "learning"]
 			.every(keyword => firstTitle.includes(keyword))
@@ -49,7 +39,7 @@ test("`find` retrieves `Volume`s from `GoogleBooks` API with book excerpt", asyn
 })
 
 test("`find` requires an argument", async ()=>{
-	const result = await exec(`find`)
+	const result = await run(`find`)
 	expect(result.includes("Missing required argument.")).toBe(true)
 })
 

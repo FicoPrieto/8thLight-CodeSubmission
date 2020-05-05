@@ -5,16 +5,19 @@ import Settings from "../../Settings"
 import redent from "redent"
 
 
-//###############//
-//###  Setup  ###//
-//###############//
+//#################//
+//###  Aliases  ###//
+//#################//
 
-const tab = "".padEnd(Settings.indentationWidth)
+const {truncationString} = Settings.UI
 
 
 //########################//
 //###  Exports.Public  ###//
 //########################//
+
+/** Indentation string, composed of spaces. Length is set via `Settings.indentationWidth`. */
+export const tab = "".padEnd(Settings.UI.indentationWidth)
 
 /** Reduces the lowest level of indentation to zero, while preserving the relational indentation between lines. */
 export function dedent(text:string){
@@ -54,8 +57,8 @@ export function truncate(text:string, length:number){
 	else if(length >= text.length)
 		{return text}
 	else{
-		const offsetLength = (length - Settings.truncationString.length)
-		return (text.substring(0, offsetLength) + Settings.truncationString)
+		const offsetLength = (length - truncationString.length)
+		return (text.substring(0, offsetLength) + truncationString)
 	}
 }
 
@@ -64,7 +67,7 @@ export function truncate(text:string, length:number){
 //###  Utilities  ###//
 //###################//
 
-const _minimum_TruncationLength = (Settings.truncationString.length + 1)
+const _minimum_TruncationLength = (truncationString.length + 1)
 
 const _leading_And_Trailing_Whitespace = /(^[\s]*\n(?=[\t ]*[^\s]))|(\n[\s]*$)/g
 

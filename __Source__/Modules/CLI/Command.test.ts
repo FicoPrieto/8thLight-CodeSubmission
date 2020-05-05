@@ -1,6 +1,6 @@
 //###  Module  ###//
 import {Command          } from "./Command"
-import {build, positional} from "./Command.test.utilities"
+import {build, positional} from "./_TestUtilities"
 
 
 //###############//

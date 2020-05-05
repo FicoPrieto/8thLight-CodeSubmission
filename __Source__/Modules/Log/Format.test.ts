@@ -2,21 +2,14 @@
 import Settings from "../../Settings"
 
 //###  Module  ###//
-import {dedent, indent, multiLine, trim, truncate} from "./Format"
+import {tab, dedent, indent, multiLine, trim, truncate} from "./Format"
 
 
 //#################//
 //###  Aliases  ###//
 //#################//
 
-const {truncationString} = Settings
-
-
-//###############//
-//###  Setup  ###//
-//###############//
-
-const tab = "".padEnd(Settings.indentationWidth)
+const {truncationString} = Settings.UI
 
 
 //######################//
