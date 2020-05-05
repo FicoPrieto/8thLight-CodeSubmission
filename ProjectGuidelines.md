@@ -10,7 +10,7 @@
   
   - [x] command line application
 
-  - [ ] use the Google Books API to search for books
+  - [x] use the Google Books API to search for books
 
   - [ ] do not add any additional features
 
