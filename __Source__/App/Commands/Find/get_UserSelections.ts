@@ -1,8 +1,9 @@
 //###  App  ###//
 import {build_BookString, convert_Volume_To_Book} from "../../Utilities"
 import Settings                                   from "../../../Settings"
-import {Environment}                              from "../../../Modules/Environment/__Main__"
-import {Prompt     }                              from "../../../Modules/Prompt/__Main__"
+import {Environment         }                     from "../../../Modules/Environment/__Main__"
+import {Prompt              }                     from "../../../Modules/Prompt/__Main__"
+import {Prompt as PromptType}                     from "../../../Modules/Prompt/_Type"
 
 //###  NPM  ###//
 import {Volume} from "../../../NPM/GoogleBooks/__Main__"
@@ -21,12 +22,7 @@ const Message = Settings.Output.Command.Find.get_UserSelection
 
 export async function get_UserSelections(volumes:Volume[]){
 	const prompt = _get_SelectionPrompt(volumes)
-
-	return (
-		(Environment.is_Testing)
-		? prompt
-		: await prompt.run()
-	)
+	return (Environment.is_Testing) ? prompt : await _get_SelectionPrompt_Results(prompt)
 }
 
 
@@ -61,4 +57,16 @@ function _build_ChoiceMap(volumes:Volume[]){
 	}
 
 	return choiceMap
+}
+
+async function _get_SelectionPrompt_Results(prompt:PromptType<Volume>){
+	let selections = []
+	try
+		{selections = await prompt.run()}
+	catch{
+		// Prevents app from crashing when user presses the `escape` key.
+		// Resolves to CLI root, returning no selections.
+		// TODO: Remove when issue closed: https://github.com/enquirer/enquirer/issues/245
+	}
+	return selections
 }
