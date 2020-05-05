@@ -15,7 +15,12 @@
 	},
 
 	"dependencies": {
-		"node-fetch": "^2.6.0"
+		"escape-string-regexp": "^4.0.0",
+		"node-fetch":           "^2.6.0",
+		"ora":                  "^4.0.4",
+		"redent":               "^3.0.0",
+		"vorpal":               "moleculerjs/vorpal#ba7af3a4f635f2137044eeeea5eb34b82da542f2",
+		"yargs-parser":         "^18.1.3"
 	},
 
 	"devDependencies": {
@@ -36,7 +41,10 @@
 		"ts-jest":     "^25.4.0",
 		"@types/jest": "^25.2.1",
 
-		"pkg": "^4.4.7"
+		"pkg": "^4.4.7",
+
+		"@types/node-fetch":   "^2.5.7",
+		"@types/yargs-parser": "^15.0.0"
 	},
 
 	"scripts": {

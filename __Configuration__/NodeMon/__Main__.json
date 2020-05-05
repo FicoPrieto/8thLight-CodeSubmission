@@ -1,6 +1,7 @@
 {
 
-	"verbose": false,
+	"verbose":     false,
+	"restartable": false,
 
 	"events": {
 		"start": "node -e console.clear()"

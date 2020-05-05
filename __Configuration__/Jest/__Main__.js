@@ -10,4 +10,8 @@ module.exports = {
 		"<rootDir>/**/*.test.ts",
 	],
 
+	setupFiles: [
+		"<rootDir>/TestSetup.ts",
+	],
+
 }

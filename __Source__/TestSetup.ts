@@ -1,9 +1,9 @@
 //###  App  ###//
-import {App} from "./App"
+import Settings from "./Settings"
 
 
 //####################//
 //###  Initialize  ###//
 //####################//
 
-App.start()
+process.env[Settings.testEnvironment_Key] = "true"
