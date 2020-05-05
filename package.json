@@ -80,9 +80,10 @@
 		"start":       "npm run _clear-console && ts-node -r tsconfig-paths/register ./__Source__/__Main__.ts",
 		"start-watch": "nodemon --config ./__Configuration__/NodeMon/__Main__.json --exec ts-node -r tsconfig-paths/register ./__Source__/__Main__.ts",
 
-		"test":          "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent",
-		"test-coverage": "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --coverage",
-		"test-watch":    "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --watch",
+		"test":             "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent",
+		"test-coverage":    "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --coverage",
+		"test-watch":       "npm run _clear-console && jest --config ./__Configuration__/Jest/__Main__.js --passWithNoTests --silent --watch",
+		"test-clear-cache": "npm run _clear-console && jest --clear-cache",
 
 		"_clear-console":       "run-script-os",
 		"_clear-console:nix":   "clear",

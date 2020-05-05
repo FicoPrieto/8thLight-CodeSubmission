@@ -52,7 +52,7 @@ export namespace Style{
 		export const Normal   = (text:string) => reset(text)
 		export const Bold     = (text:string) => Font.bold               (reset(text))
 		export const Note     = (text:string) => Color.grey              (reset(text))
-		export const Keyboard = (text:string) => Font.bold.underline.grey(reset(text))
+		export const Accent   = (text:string) => Font.bold.underline.grey(reset(text))
 		export const Selected = (text:string) => Font.bold.blue          (reset(text))
 		export const Active   = (text:string) => Font.bold.green         (reset(text))
 	}

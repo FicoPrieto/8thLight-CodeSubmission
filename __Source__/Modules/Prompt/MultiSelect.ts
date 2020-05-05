@@ -89,15 +89,15 @@ export namespace MultiSelect{
 //###################//
 
 const _usageInstructions = ""
-	+ Style.Note    ("(press "         )
-	+ Style.Keyboard("up"              )
-	+ Style.Note    ("/"               )
-	+ Style.Keyboard("down"            )
-	+ Style.Note    (" to move, "      )
-	+ Style.Keyboard("space"           )
-	+ Style.Note    (" to select, and ")
-	+ Style.Keyboard("enter"           )
-	+ Style.Note    (" to submit)"     )
+	+ Style.Note  ("(press "         )
+	+ Style.Accent("up"              )
+	+ Style.Note  ("/"               )
+	+ Style.Accent("down"            )
+	+ Style.Note  (" to move, "      )
+	+ Style.Accent("space"           )
+	+ Style.Note  (" to select, and ")
+	+ Style.Accent("enter"           )
+	+ Style.Note  (" to submit)"     )
 	+ "\n"
 
 function _get_ConstructorArguments<ValueType>(

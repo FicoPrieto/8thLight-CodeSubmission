@@ -2,9 +2,9 @@
 import {AppData, Book} from "./Types"
 
 //###  App  ###//
-import Settings      from "../../Settings"
-import {Database   } from "../../Modules/Database/__Main__"
-import {Environment} from "../../Modules/Environment/__Main__"
+import Settings                from "../../Settings"
+import {Database as _Database} from "../../Modules/Database/__Main__"
+import {Environment          } from "../../Modules/Environment/__Main__"
 
 //###  Node  ###//
 import Path from "path"
@@ -17,17 +17,17 @@ import Temp from "tmp"
 //###  Aliases  ###//
 //#################//
 
-const Set = Database.Set.Decorator
+const Set = _Database.Set.Decorator
 
 
 //##################//
 //###  Database  ###//
 //##################//
 
-class AppDatabase extends Database<AppData>{
+export class Database extends _Database<AppData>{
 	protected _filePath = _get_DatabaseFile()
 
-	@Set("Books") public readonly Books: Database.List<Book>
+	@Set("Books") public readonly Books: _Database.List<Book>
 }
 
 
@@ -35,7 +35,7 @@ class AppDatabase extends Database<AppData>{
 //###  Exports.Public  ###//
 //########################//
 
-export const database = AppDatabase.create()
+export const database = Database.create()
 
 
 //###################//

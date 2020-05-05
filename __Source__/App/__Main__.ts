@@ -48,3 +48,4 @@ export namespace App{
 //####################//
 
 import "./Commands/Find/__Main__"
+import "./Commands/List/__Main__"
