@@ -1,9 +1,12 @@
+//###  App  ###//
+import {RequiredPartial} from "../../../Modules/Types/RequiredPartial"
+
 //###  Module  ###//
-import {Volume                  } from "./__Main__"
-import {API_Base                } from "../_Utilities/API_Base"
-import {build_FieldString       } from "../_Utilities/build_FieldString"
-import {EscapeCodes             } from "../_Utilities/EscapeCodes"
-import {integer, RequiredPartial} from "../_Utilities/Types"
+import {Volume           } from "./__Main__"
+import {API_Base         } from "../_Utilities/API_Base"
+import {build_FieldString} from "../_Utilities/build_FieldString"
+import {EscapeCodes      } from "../_Utilities/EscapeCodes"
+import {integer          } from "../_Utilities/Types"
 
 
 //##############################//

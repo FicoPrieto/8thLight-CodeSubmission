@@ -2,10 +2,10 @@
 import {VolumeInstance_Array} from "./_TestUtilities"
 
 //###  App  ###//
-import {App} from "../../App"
+import {App} from "../../__Main__"
 
 //###  NPM  ###//
-import {Volume} from "../../NPM/GoogleBooks/__Main__"
+import {Volume} from "../../../NPM/GoogleBooks/__Main__"
 
 
 //#################//

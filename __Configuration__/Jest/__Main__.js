@@ -8,6 +8,7 @@ module.exports = {
 
 	testMatch: [
 		"<rootDir>/**/*.test.ts",
+		"<rootDir>/**/__Test__.ts",
 	],
 
 	setupFiles: [

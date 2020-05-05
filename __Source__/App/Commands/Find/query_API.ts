@@ -1,10 +1,10 @@
 //###  App  ###//
-import {App}      from "../../App"
-import Settings   from "../../Settings"
-import {Progress} from "../../Modules/Log/Progress"
+import {App}      from "../../__Main__"
+import Settings   from "../../../Settings"
+import {Progress} from "../../../Modules/Log/Progress"
 
 //###  NPM  ###//
-import {Volume} from "../../NPM/GoogleBooks/__Main__"
+import {Volume} from "../../../NPM/GoogleBooks/__Main__"
 
 
 //#################//

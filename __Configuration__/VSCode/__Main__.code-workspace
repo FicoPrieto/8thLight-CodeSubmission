@@ -12,10 +12,6 @@
 		"editor.detectIndentation": false,
 		"terminal.integrated.cwd":  "${workspaceFolder:___  ROOT  ___________________}",
 
-		"files.associations": {
-			"*.test": "typescript"
-		},
-
 		"files.exclude": {
 			"**/__Build__":         true,
 			"**/__Configuration__": true,

@@ -1,5 +1,5 @@
 //###  App  ###//
-import {App} from "./App"
+import {App} from "./App/__Main__"
 
 
 //####################//

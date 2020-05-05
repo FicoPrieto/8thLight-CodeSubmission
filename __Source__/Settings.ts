@@ -1,5 +1,8 @@
 export default{
 
+	appName:           "ReadingList",
+	databaseExtension: "data",
+
 	testEnvironment_Key: "__TEST_ENVIRONMENT__",
 
 	maximum_QueryResults: 5,
@@ -15,7 +18,7 @@ export default{
 		Command: {
 			Find: {
 				command:     "find <query>",
-				description: "Searches GoogleBooks for the given query.",
+				description: "Searches GoogleBooks for the given query, then allows you to select books to save to your reading list.",
 				query_API: {
 					inProgress: "Querying GoogleBooks API",
 					noResults:  "No books were found matching your query. Try simplifying your query.",

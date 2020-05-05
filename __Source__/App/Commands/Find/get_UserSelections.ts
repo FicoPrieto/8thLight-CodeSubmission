@@ -1,11 +1,11 @@
 //###  App  ###//
-import {App}      from "../../App"
-import Settings   from "../../Settings"
-import {truncate} from "../../Modules/Log/Format"
-import {Prompt  } from "../../Modules/Prompt/__Main__"
+import Settings      from "../../../Settings"
+import {Environment} from "../../../Modules/Environment/__Main__"
+import {truncate   } from "../../../Modules/Log/Format"
+import {Prompt     } from "../../../Modules/Prompt/__Main__"
 
 //###  NPM  ###//
-import {Volume} from "../../NPM/GoogleBooks/__Main__"
+import {Volume} from "../../../NPM/GoogleBooks/__Main__"
 
 
 //#################//
@@ -23,7 +23,7 @@ export async function get_UserSelections(volumes:Volume[]){
 	const prompt = _get_SelectionPrompt(volumes)
 
 	return (
-		(App.is_Testing)
+		(Environment.is_Testing)
 		? prompt
 		: await prompt.run()
 	)

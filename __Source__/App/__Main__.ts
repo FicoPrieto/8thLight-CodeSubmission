@@ -1,5 +1,5 @@
 //###  App  ###//
-import Settings from "./Settings"
+import {database as _database} from "./Database/__Main__"
 
 //###  NPM  ###//
 import Vorpal from "vorpal"
@@ -14,8 +14,8 @@ export namespace App{
 	/** Returns the running `Vorpal` instance of the app. */
 	export const instance = Vorpal()
 
-	/** Returns `true` if the app exists in a testing environment, otherwise `false`. */
-	export const is_Testing = process.env[Settings.testEnvironment_Key]
+	/** `Database` instance for persisting & managing user data. */
+	export const database = _database
 
 	/** Alias for `instance.command`. Registers a `Vorpal.Command` instance to the app, and returns it for further development. */
 	export function command(definition:string)

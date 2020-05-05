@@ -2,7 +2,7 @@
 import {VolumeInstance_Array} from "./_TestUtilities"
 
 //###  App  ###//
-import {App} from "../../App"
+import {App} from "../../__Main__"
 
 
 //#################//
